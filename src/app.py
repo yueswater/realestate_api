@@ -47,6 +47,7 @@ def download_file(year: int, season: int):
     )
 
 
-@app.get("/ping", status_code=status.HTTP_200_OK)
+@app.get("/ping")
+@app.head("/ping")
 def ping():
     return {"status": "ok", "source": "api alive"}
