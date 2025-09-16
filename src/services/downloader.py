@@ -1,11 +1,13 @@
-from src.services.fetcher import real_estate_downloader
-from src.utils.extractor import extract_zip_to_folder
-from pathlib import Path
-from src.utils.filter import keep_only
-from src.utils.converter import convert_to_roc_year
 import logging
+from pathlib import Path
+
+from src.services.fetcher import real_estate_downloader
+from src.utils.converter import convert_to_roc_year
+from src.utils.extractor import extract_zip_to_folder
+from src.utils.filter import keep_only
 
 logging.basicConfig(level=logging.WARNING)
+
 
 def download_and_extract(year: int, season: int) -> Path:
     roc_year = convert_to_roc_year(year=year)

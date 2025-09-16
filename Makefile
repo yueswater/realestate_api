@@ -14,6 +14,7 @@ clean:
 format:
 	autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place src
 	isort src
+	black src
 
 # Lint code with flake8
 lint:

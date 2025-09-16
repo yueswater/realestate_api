@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 
+
 def keep_only(folder: Path, suffix: str) -> List[str]:
     folder = Path(folder)
     kept_files = []
