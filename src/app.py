@@ -5,6 +5,7 @@ from fastapi import FastAPI, Query, status
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 from src.services.downloader import download_and_extract
+from src.utils.converter import convert_to_roc_year
 
 app = FastAPI()
 
@@ -33,9 +34,9 @@ def download(year: int = Query(...), season: int = Query(...)):
         )
 
 
-@app.get("/download/file")
 def download_file(year: int, season: int):
-    zip_path = Path(f"data/{year - 1911}S{season}.zip")
+    roc_year = convert_to_roc_year(year)
+    zip_path = Path(f"{roc_year}S{season}.zip")
 
     if zip_path.exists():
         return FileResponse(
