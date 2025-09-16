@@ -4,7 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Anthony Sung <sungpinyue@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.11,<4.0"
+packages = [
+    { include = "app", from = "src" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
@@ -18,5 +20,5 @@ isort = "^6.0.1"
 flake8 = "^7.3.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.6.0"]
 build-backend = "poetry.core.masonry.api"
