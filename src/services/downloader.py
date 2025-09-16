@@ -21,10 +21,4 @@ def download_and_extract(year: int, season: int) -> Path:
         extract_zip_to_folder(zip_path=zip_path, output_dir=output_dir)
         _ = keep_only(folder=output_dir, suffix="_lvr_land_a.csv")
 
-    try:
-        zip_path.unlink()
-        logging.info(f"Delete zip: {zip_path}")
-    except Exception:
-        logging.exception("Failed to delete zip")
-
     return output_dir
