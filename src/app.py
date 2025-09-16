@@ -2,11 +2,22 @@ import traceback
 from pathlib import Path
 
 from fastapi import FastAPI, Query, status
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 from src.services.downloader import download_and_extract
 
 app = FastAPI()
+
+
+@app.get("/", response_class=HTMLResponse)
+def index():
+    return """
+    <h1>RealEstateHub API</h1>
+    <ul>
+        <li><a href="/ping">Health check</a></li>
+        <li><a href="/docs">API Docs</a></li>
+    </ul>
+    """
 
 
 @app.get("/download")
