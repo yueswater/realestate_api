@@ -1,11 +1,8 @@
-import traceback
-from pathlib import Path
-
-from fastapi import FastAPI, Query, status
+from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+import traceback
 
-from src.services.downloader import download_and_extract
-from src.utils.converter import convert_to_roc_year
+from src.services.downloader import real_estate_downloader
 
 app = FastAPI()
 
@@ -17,6 +14,7 @@ def index():
     <ul>
         <li><a href="/ping">Health check</a></li>
         <li><a href="/docs">API Docs</a></li>
+        <li><a href="/download?year=2020&season=2">Sample download (2020 S2)</a></li>
     </ul>
     """
 
@@ -24,28 +22,15 @@ def index():
 @app.get("/download")
 def download(year: int = Query(...), season: int = Query(...)):
     try:
-        output_path = download_and_extract(year=year, season=season)
-        return {"status": status.HTTP_200_OK, "path": str(output_path)}
+        zip_path = real_estate_downloader(year=year, season=season)
+        return FileResponse(
+            path=zip_path,
+            media_type="application/zip",
+            filename=zip_path.name,
+        )
     except Exception as e:
         traceback.print_exc()
-        return JSONResponse(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={"status": "error", "detail": str(e)},
-        )
-
-
-def download_file(year: int, season: int):
-    roc_year = convert_to_roc_year(year)
-    zip_path = Path(f"{roc_year}S{season}.zip")
-
-    if zip_path.exists():
-        return FileResponse(
-            path=zip_path, media_type="application/zip", filename=zip_path.name
-        )
-    return JSONResponse(
-        status_code=status.HTTP_404_NOT_FOUND,
-        content={"error": f"File not found: {zip_path}"},
-    )
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.get("/ping")
