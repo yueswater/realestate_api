@@ -14,7 +14,6 @@ def index():
     <ul>
         <li><a href="/ping">Health check</a></li>
         <li><a href="/docs">API Docs</a></li>
-        <li><a href="/download?year=2020&season=2">Sample download (2020 S2)</a></li>
     </ul>
     """
 
@@ -27,6 +26,7 @@ def download(year: int = Query(...), season: int = Query(...)):
             path=zip_path,
             media_type="application/zip",
             filename=zip_path.name,
+            headers={"Content-Disposition": f'attachment; filename="{zip_path.name}"'}
         )
     except Exception as e:
         traceback.print_exc()
