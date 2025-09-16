@@ -4,7 +4,7 @@
 
 # Run FastAPI server with live reload
 run:
-	uvicorn app.main:app --reload --app-dir src
+	uvicorn src.app:app --reload
 
 # Remove Python __pycache__ directories
 clean:

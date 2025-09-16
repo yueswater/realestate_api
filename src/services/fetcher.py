@@ -1,6 +1,6 @@
 import requests
-from utils.converter import convert_to_roc_year
-from config import REAL_ESTATE_ZIP_URL_TEMPLATE
+from src.utils.converter import convert_to_roc_year
+from src.config import REAL_ESTATE_ZIP_URL_TEMPLATE
 
 def real_estate_downloader(year: int, season: int) -> str:
     # convert AD to ROC year

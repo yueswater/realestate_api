@@ -1,7 +1,7 @@
 import traceback
 from fastapi import FastAPI, Query, status
 from fastapi.responses import JSONResponse
-from app.downloader import download_and_extract
+from src.services.downloader import download_and_extract
 
 app = FastAPI()
 
