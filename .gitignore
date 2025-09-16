@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# macOS system file
+.DS_Store
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+.realestate-crawler-py3.12/
+
+# Pyenv version file (optional)
+.python-version
+
+# Poetry
+poetry.lock
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# mypy
+.mypy_cache/
+
+# Pytest
+.cache/
+*.cover
+htmlcov/
+
+# Test reports / coverage
+.coverage
+coverage.xml
+*.log
+
+# Sphinx docs
+docs/_build/
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+
+# Downloaded / Extracted data
+*.zip
+*.csv
+*.tmp
+*.bak
+
+# Logs / debug
+*.log
+*.err
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Icon?
